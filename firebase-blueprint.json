@@ -1,0 +1,81 @@
+{
+  "entities": {
+    "application": {
+      "title": "Application",
+      "description": "An event application form submission",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique application ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Applicant full name",
+          "minLength": 2,
+          "maxLength": 20
+        },
+        "org": {
+          "type": "string",
+          "description": "Organization name (optional)",
+          "maxLength": 50
+        },
+        "email": {
+          "type": "string",
+          "description": "Applicant email address",
+          "maxLength": 100
+        },
+        "phone": {
+          "type": "string",
+          "description": "Applicant phone number (010-XXXX-XXXX)",
+          "maxLength": 15
+        },
+        "message": {
+          "type": "string",
+          "description": "Applicant question or request",
+          "maxLength": 500
+        },
+        "agree": {
+          "type": "boolean",
+          "description": "Consent to personal information collection"
+        },
+        "submittedAt": {
+          "type": "string",
+          "description": "Submission ISO or formatted timestamp string"
+        },
+        "status": {
+          "type": "string",
+          "description": "Processing status",
+          "enum": ["접수완료", "확인중", "참석확정", "취소됨"]
+        },
+        "notes": {
+          "type": "string",
+          "description": "Admin notes",
+          "maxLength": 500
+        }
+      },
+      "required": ["name", "email", "phone", "agree", "status", "submittedAt"]
+    }
+  },
+  "firestore": {
+    "/applications/{applicationId}": {
+      "schema": {
+        "$ref": "#/entities/application"
+      },
+      "description": "Collection of all participant event applications"
+    },
+    "/settings/{settingId}": {
+      "schema": {
+        "title": "Setting",
+        "description": "Application settings including Google Sheets webhook",
+        "type": "object",
+        "properties": {
+          "webhookUrl": { "type": "string" },
+          "enabled": { "type": "boolean" },
+          "autoSync": { "type": "boolean" }
+        }
+      },
+      "description": "Application configuration settings"
+    }
+  }
+}

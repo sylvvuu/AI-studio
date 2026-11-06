@@ -1,0 +1,6 @@
+{
+  "name": "스마트 이벤트 신청서 (Event Application Form)",
+  "description": "깃허브(GitHub) 및 파일 기반의 이벤트 신청폼을 구글 AI 스튜디오에서 바로 실행하고 관리하는 스마트 접수 시스템",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
